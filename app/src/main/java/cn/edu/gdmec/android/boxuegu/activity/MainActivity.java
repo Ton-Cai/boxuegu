@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.edu.gdmec.android.boxuegu.R;
+import cn.edu.gdmec.android.boxuegu.view.ExercisesView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -151,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSelectedStatus(0);
         createView(0);
     }
+
+
     /**
      * 显示对应的页面
      */
@@ -222,7 +225,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return isLogin;
 
     }
-    private boolean clearLoginStatus() {
+    /**
+     *  清除SharedPreferences中的登录状态
+     */
+    private void clearLoginStatus() {
         SharedPreferences sp = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();//获取编辑器
         editor.putBoolean("isLogin",false);//清除登录状态
