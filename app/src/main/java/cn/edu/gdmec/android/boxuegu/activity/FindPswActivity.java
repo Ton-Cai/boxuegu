@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import cn.edu.gdmec.android.boxuegu.R;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
+import cn.edu.gdmec.android.boxuegu.utils.MD5Utils;
 
 public class FindPswActivity extends AppCompatActivity {
 
@@ -79,7 +80,7 @@ public class FindPswActivity extends AppCompatActivity {
                         Toast.makeText(FindPswActivity.this, "请输入要验证的姓名", Toast.LENGTH_SHORT).show();
                         return;
                     }else if (!validateName.equals(sp_security)){
-                        Toast.makeText(FindPswActivity.this, "输入的密保不正确", Toast.LENGTH_SHORT).show();；
+                        Toast.makeText(FindPswActivity.this, "输入的密保不正确", Toast.LENGTH_SHORT).show();
                         return;
                     }else{
                         //用户输入的密保证正确，重新给用户设置一个密码
