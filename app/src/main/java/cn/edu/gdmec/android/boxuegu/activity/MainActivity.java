@@ -216,14 +216,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mExercisesView.showView();
                 break;
             case 2:
-//                //我的界面
-//                if (mMyInfoView == null){
-//                    mMyInfoView = new MyInfoView(this);
-//                    mBodyLayout.addView(mMyInfoView.getView());
-//                }else {
-//                    mMyInfoView.getView();
-//                }
-//                mMyInfoView.showView();
+                //我的界面
+                if (mMyInfoView == null){
+                    mMyInfoView = new MyInfoView(this);
+                    mBodyLayout.addView(mMyInfoView.getView());
+                }else {
+                    mMyInfoView.getView();
+                }
+                mMyInfoView.showView();
                 break;
         }
 
