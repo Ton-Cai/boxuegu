@@ -18,9 +18,11 @@ import android.widget.Toast;
 
 import cn.edu.gdmec.android.boxuegu.R;
 import cn.edu.gdmec.android.boxuegu.view.ExercisesView;
+import cn.edu.gdmec.android.boxuegu.view.MyInfoView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
     /**
      * 视图
      */
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 中间内容栏
      */
     private LinearLayout mBottomLayout;
+    /**
+     * "我"界面
+     */
+    private MyInfoView mMyInfoView;
     /**
      * 底部按钮
      */
@@ -48,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_back;
     private TextView tv_main_title;
     private RelativeLayout rl_title_bar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
         initBottomBar();
-        setLisetener();
+        setListener();
         setInitStatus();
     }
     /**
@@ -117,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 设置底部三个按钮的点击监听事件
      */
-    private void setLisetener(){
+    private void setListener(){
         for (int i = 0;i < mBottomLayout.getChildCount();i++){
             mBottomLayout.getChildAt(i).setOnClickListener(this);
         }
@@ -188,6 +196,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         createView(index);
         setSelectedStatus(index);
     }
+
+
     /**
      * 选择视图
      */
@@ -207,6 +217,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 2:
                 //我的界面
+                if (mMyInfoView == null){
+                    mMyInfoView = new MyInfoView(this);
+                    mBodyLayout.addView(mMyInfoView.getView());
+                }else {
+                    mMyInfoView.getView();
+                }
+                mMyInfoView.showView();
                 break;
         }
 
@@ -220,6 +237,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (isLogin){//登录成功时显示课程界面
                 clearBottomImageState();
                 selectDispalyView(0);
+            }
+            if (mMyInfoView != null){
+                mMyInfoView.setLoginParams(isLogin);
             }
         }
     }
