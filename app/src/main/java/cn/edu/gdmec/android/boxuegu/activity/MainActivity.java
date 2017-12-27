@@ -137,6 +137,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     /**
+     * 设置底部按钮选中状态
+     */
+    public void setSelectedStatus(int index){
+        switch (index){
+            case 0:
+                mCoursetBtn.setSelected(true);
+                iv_course.setImageResource(R.drawable.main_course_icon_selected);
+                tv_course.setTextColor(Color.parseColor("#0097F7"));
+                rl_title_bar.setVisibility(View.VISIBLE);
+                tv_main_title.setText("博学谷课程");
+                break;
+            case 1:
+                mExercisesBtn.setSelected(true);
+                iv_exercises.setImageResource(R.drawable.main_exercises_icon_selected);
+                tv_exercises.setTextColor(Color.parseColor("#0097F7"));
+                rl_title_bar.setVisibility(View.VISIBLE);
+                tv_main_title.setText("博学谷习题");
+                break;
+            case 2:
+                mMyInfoBtn.setSelected(true);
+                iv_myInfo.setImageResource(R.drawable.main_my_icon_selected);
+                tv_myInfo.setTextColor(Color.parseColor("#0097F7"));
+                rl_title_bar.setVisibility(View.GONE);
+        }
+    }
+    /**
      * 移除不需要的视图
      */
     private void removeAllView(){
