@@ -67,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //跳转到找回密码界面
+                Intent intent = new Intent(LoginActivity.this, FindPswActivity.class);
+
             }
         });
         //登录按钮的点击事件
