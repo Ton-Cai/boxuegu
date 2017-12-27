@@ -11,8 +11,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.gdmec.android.bean.CourseBean;
-import cn.edu.gdmec.android.bean.ExercisesBean;
+
+import cn.edu.gdmec.android.boxuegu.bean.CourseBean;
+import cn.edu.gdmec.android.boxuegu.bean.ExercisesBean;
 
 
 /**
