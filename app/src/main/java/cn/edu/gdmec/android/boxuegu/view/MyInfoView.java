@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.edu.gdmec.android.boxuegu.R;
+import cn.edu.gdmec.android.boxuegu.activity.LoginActivity;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
 
 /**
@@ -60,14 +61,14 @@ public class MyInfoView {
             @Override
             public void onClick(View v){
                 //判断是否登录
-                if (readLoginStatus()){
+                if (readLoginStatus()) {
                     //跳转到个人资料界面
-
-
-                }else {
-                    Intent intent = new Intent(mContext, LoginActivity.class);
-                    ((Activity) mContext.startActivityForResult(intent, 1));
                 }
+
+//                }else {
+//                    Intent intent = new Intent(mContext, LoginActivity.class);
+//                    ((Activity) mContext.startActivityForResult(intent, 1));
+//                }
             }
         });
 
