@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 底部按钮
      */
-    private View mCoursetBtn;
+    private View mCourseBtn;
     private View mExercisesBtn;
     private View mMyInfoBtn;
     private TextView tv_course;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void initBottomBar(){
         mBottomLayout = (LinearLayout) findViewById(R.id.main_bottom_bar);
-        mCoursetBtn = findViewById(R.id.bottom_bar_course_btn);
+        mCourseBtn = findViewById(R.id.bottom_bar_course_btn);
         mExercisesBtn = findViewById(R.id.bottom_bar_exercises_btn);
         mMyInfoBtn = findViewById(R.id.bottom_bar_myinfo_btn);
         tv_course = (TextView) findViewById(R.id.bottom_bar_text_course);
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void setSelectedStatus(int index){
         switch (index){
             case 0:
-                mCoursetBtn.setSelected(true);
+                mCourseBtn.setSelected(true);
                 iv_course.setImageResource(R.drawable.main_course_icon_selected);
                 tv_course.setTextColor(Color.parseColor("#0097F7"));
                 rl_title_bar.setVisibility(View.VISIBLE);
@@ -216,14 +216,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mExercisesView.showView();
                 break;
             case 2:
-                //我的界面
-                if (mMyInfoView == null){
-                    mMyInfoView = new MyInfoView(this);
-                    mBodyLayout.addView(mMyInfoView.getView());
-                }else {
-                    mMyInfoView.getView();
-                }
-                mMyInfoView.showView();
+//                //我的界面
+//                if (mMyInfoView == null){
+//                    mMyInfoView = new MyInfoView(this);
+//                    mBodyLayout.addView(mMyInfoView.getView());
+//                }else {
+//                    mMyInfoView.getView();
+//                }
+//                mMyInfoView.showView();
                 break;
         }
 
