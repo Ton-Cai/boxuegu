@@ -46,5 +46,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
         timer.schedule(task,3000);//设置这个task在延迟三秒之后自动执行
+
     }
+
 }
