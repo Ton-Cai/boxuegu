@@ -30,6 +30,7 @@ public class MyInfoView {
     private  RelativeLayout rl_setting;
     private TextView tv_user_name;
 
+
     public MyInfoView(Context mContext){
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
