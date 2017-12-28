@@ -13,7 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.edu.gdmec.android.boxuegu.R;
+import cn.edu.gdmec.android.boxuegu.activity.FindPswActivity;
 import cn.edu.gdmec.android.boxuegu.activity.LoginActivity;
+import cn.edu.gdmec.android.boxuegu.activity.ModifyPswActivity;
+import cn.edu.gdmec.android.boxuegu.activity.RegisterActivity;
+import cn.edu.gdmec.android.boxuegu.activity.SettingActivity;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
 
 /**
@@ -89,7 +93,8 @@ public class MyInfoView {
             public void onClick(View view) {
                 if (readLoginStatus()){
                     // 跳转到设置页面
-
+                    Intent intent = new Intent(mContext, SettingActivity.class);
+                    ((Activity) mContext).startActivityForResult(intent, 1);
                 }else {
                     Toast.makeText(mContext, "您还未登录,请先登录", Toast.LENGTH_LONG).show();
                 }

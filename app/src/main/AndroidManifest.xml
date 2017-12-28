@@ -20,6 +20,12 @@
         <activity android:name=".activity.ExercisesDetailActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.LoginActivity"/>
-</application>
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.ModifyPswActivity"/>
+        <activity android:name=".activity.FindPswActivity"/>
+
+        <activity android:name=".activity.UserInfoActivity"/>
+
+    </application>
 
 </manifest>

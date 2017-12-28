@@ -17,7 +17,7 @@
         android:background="#E3E3E3"/>
 
     <RelativeLayout
-        android:id="@+id/rl_modiy_psw"
+        android:id="@+id/rl_modify_psw"
         android:background="#F7F8F8F8"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
@@ -99,13 +99,6 @@
             android:text="退出登录"
             android:textColor="#A3A3A3"/>
 
-        <ImageView
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="25dp"
-            android:src="@drawable/iv_right_arrow"
-            android:layout_width="15dp"
-            android:layout_height="15dp" />
     </RelativeLayout>
 
     <View
