@@ -30,7 +30,7 @@ public class MyInfoView {
     private  RelativeLayout rl_setting;
     private TextView tv_user_name;
 
-    public MyInfoView(Context context){
+    public MyInfoView(Context mContext){
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
     }
@@ -63,12 +63,12 @@ public class MyInfoView {
                 //判断是否登录
                 if (readLoginStatus()) {
                     //跳转到个人资料界面
-                }
 
-//                }else {
-//                    Intent intent = new Intent(mContext, LoginActivity.class);
-//                    ((Activity) mContext.startActivityForResult(intent, 1));
-//                }
+
+                } else {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    ((Activity) mContext).startActivityForResult(intent, 1);
+                }
             }
         });
 
