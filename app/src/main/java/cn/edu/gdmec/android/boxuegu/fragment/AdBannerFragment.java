@@ -1,8 +1,8 @@
 package cn.edu.gdmec.android.boxuegu.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,7 @@ import cn.edu.gdmec.android.boxuegu.R;
  * Created by student on 17/12/29.
  */
 
-public class AdBannerFragment extends Fragment{
+public class AdBannerFragment extends Fragment {
 
     private String ad;   //广告
     private ImageView iv;  //图片

@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
+    android:id="@+id/rl_adBanner"
     android:background="#eeeeee">
 
     <android.support.v4.view.ViewPager
