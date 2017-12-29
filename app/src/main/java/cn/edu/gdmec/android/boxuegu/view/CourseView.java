@@ -5,9 +5,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +29,7 @@ import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
  * Created by student on 17/12/29.
  */
 
-public class CourseView {
+public class CourseView implements View.OnTouchListener {
     public static final int MSG_AD_SLID = 002;  //广告自动播放
     private LayoutInflater mInflater;
     private FragmentActivity mContext;
@@ -36,6 +41,8 @@ public class CourseView {
     private ViewPager adPager;
     private Handler mHandler;
     private AdBannerAdapter ada;
+    private ViewPagerIndicator vpi;
+    private RelativeLayout adBannerLay;
 
     public CourseView(FragmentActivity context){
         mContext = context;
@@ -98,13 +105,80 @@ public class CourseView {
         adPager = mCurrentView.findViewById(R.id.vp_advertBanner);
         adPager.setLongClickable(false);
         ada = new AdBannerAdapter(mContext.getSupportFragmentManager(), mHandler);
+        adPager.setAdapter(ada);
+        vpi = mCurrentView.findViewById(R.id.vpi_advert_indicator);
+        vpi.setCount(ada.getCount());
+        adBannerLay = mCurrentView.findViewById(R.id.rl_adBanner);
+        adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (ada.getSize() > 0){
+                    vpi.serCurrentPosition(position % ada.getSize());
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        resetSize();
+        if (cadl != null){
+            if (cadl.size() > 0){
+                vpi.setCount(cadl.size());
+                vpi.serCurrentPosition(0);
+            }
+            ada.setDatas(cadl);
+        }
+    }
+
+    /**
+     * 计算控件大小
+     */
+    private void resetSize() {
+        int sw = getScreenWidth(mContext);
+        int adLheight = sw / 2; //广告条的宽度
+        ViewGroup.LayoutParams adlp = adBannerLay.getLayoutParams();
+        adlp.width = sw;
+        adlp.height = adLheight;
+        adBannerLay.setLayoutParams(adlp);
+    }
+
+    /**
+     *读取屏幕宽
+     */
+    private int getScreenWidth(Activity context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        Display display = context.getWindowManager().getDefaultDisplay();
+        display.getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        mHandler.removeMessages(CourseView.MSG_AD_SLID);
+        return false;
     }
 
     private class AdAutoSlidThread extends Thread{
         @Override
         public void run() {
             super.run();
+            while (true){
+                try {
+                    sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (mHandler != null){
+                    mHandler.sendEmptyMessage(MSG_AD_SLID);
+                }
+            }
         }
     }
 
@@ -120,5 +194,19 @@ public class CourseView {
                     break;
             }
         }
+    }
+
+    public View getView(){
+        if (mCurrentView == null){
+            createView();
+        }
+        return mCurrentView;
+    }
+
+    public void showView(){
+        if (mCurrentView == null){
+            createView();
+        }
+        mCurrentView.setVisibility(View.VISIBLE);
     }
 }

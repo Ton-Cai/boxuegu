@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.edu.gdmec.android.boxuegu.R;
+import cn.edu.gdmec.android.boxuegu.activity.VideoListActivity;
 import cn.edu.gdmec.android.boxuegu.bean.CourseBean;
 
 /**
