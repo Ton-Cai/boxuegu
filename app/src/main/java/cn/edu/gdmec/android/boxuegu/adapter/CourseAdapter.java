@@ -21,11 +21,11 @@ import cn.edu.gdmec.android.boxuegu.bean.CourseBean;
 
 public class CourseAdapter extends BaseAdapter{
 
-    private Context mContext;
+    private Context context;
     private List<List<CourseBean>> cbl;
 
     public CourseAdapter(Context context){
-        this.mContext = context;
+        this.context = context;
     }
     /**
      *设置数据更新界面
@@ -69,7 +69,7 @@ public class CourseAdapter extends BaseAdapter{
         final ViewHolder vh;
         if (convertView == null){
             vh = new ViewHolder();
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.course_list_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.course_list_item, null);
             vh.iv_left_img = (ImageView) convertView.findViewById(R.id.iv_left_img);
             vh.iv_right_img = (ImageView) convertView.findViewById(R.id.iv_right_img);
             vh.tv_left_img_title = (TextView) convertView.findViewById(R.id.tv_left_img_title);
@@ -96,10 +96,10 @@ public class CourseAdapter extends BaseAdapter{
                             @Override
                             public void onClick(View view) {
                                 //跳转到课程详情界面
-                                Intent intent = new Intent(mContext,VideoListActivity.class);
+                                Intent intent = new Intent(context,VideoListActivity.class);
                                 intent.putExtra("id", bean.id);
                                 intent.putExtra("intro", bean.intro);
-                                mContext.startActivity(intent);
+                                context.startActivity(intent);
                             }
                         });
                         break;
@@ -111,10 +111,10 @@ public class CourseAdapter extends BaseAdapter{
                             @Override
                             public void onClick(View view) {
                                 //跳转到课程详情界面
-                                Intent intent = new Intent(mContext,VideoListActivity.class);
+                                Intent intent = new Intent(context,VideoListActivity.class);
                                 intent.putExtra("id", bean.id);
                                 intent.putExtra("intro", bean.intro);
-                                mContext.startActivity(intent);
+                                context.startActivity(intent);
                             }
                         });
                         break;
