@@ -18,6 +18,7 @@ import cn.edu.gdmec.android.boxuegu.activity.LoginActivity;
 import cn.edu.gdmec.android.boxuegu.activity.ModifyPswActivity;
 import cn.edu.gdmec.android.boxuegu.activity.RegisterActivity;
 import cn.edu.gdmec.android.boxuegu.activity.SettingActivity;
+import cn.edu.gdmec.android.boxuegu.activity.UserInfoActivity;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
 
 /**
@@ -68,8 +69,8 @@ public class MyInfoView {
                 //判断是否登录
                 if (readLoginStatus()) {
                     //跳转到个人资料界面
-
-
+                    Intent intent=new Intent(mContext, UserInfoActivity.class);
+                    ((Activity) mContext).startActivityForResult(intent, 1);
                 } else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     ((Activity) mContext).startActivityForResult(intent, 1);
