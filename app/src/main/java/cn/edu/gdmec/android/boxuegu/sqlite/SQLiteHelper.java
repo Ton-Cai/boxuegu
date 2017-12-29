@@ -24,7 +24,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         /**
          * 创建个人信息表
          */
-        db.execSQL("CREATE TABLE IF NOT EXISTS" + U_USERINFO + "("
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + U_USERINFO + "("
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "userName VARCHAR,"//用户名
                 + "nickName VARCHAR,"//昵称
@@ -32,7 +32,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
                 + "signature VARCHAR"//签名
                 + ")");
         //创建视频播放记录表
-        db.execSQL("CREATE TABLE IF NOT EXISTS" + U_USERINFO + "("
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + U_USERINFO + "("
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "userName VARCHAR,"//用户名
                 + "chapterId INT,"//章节ID号
@@ -48,8 +48,8 @@ public class SQLiteHelper extends SQLiteOpenHelper{
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + U_USERINFO);
-        db.execSQL("DROP RABLE IF EXISTS" + U_VIDED_PLAY_LIST);
+        db.execSQL("DROP TABLE IF EXISTS " + U_USERINFO);
+        db.execSQL("DROP RABLE IF EXISTS " + U_VIDED_PLAY_LIST);
         onCreate(db);
     }
 }
