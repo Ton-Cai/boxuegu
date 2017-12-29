@@ -106,17 +106,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //课程的点击事件
             case R.id.bottom_bar_course_btn:
                 clearBottomImageState();
-                selectDispalyView(0);
+                selectDisplayView(0);
                 break;
             //习题的点击事件
             case R.id.bottom_bar_exercises_btn:
                 clearBottomImageState();
-                selectDispalyView(1);
+                selectDisplayView(1);
                 break;
             //我的点击事件
             case R.id.bottom_bar_myinfo_btn:
                 clearBottomImageState();
-                selectDispalyView(2);
+                selectDisplayView(2);
                 break;
             default:
                 break;
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 显示对应的页面
      */
-    private void selectDispalyView(int index) {
+    private void selectDisplayView(int index) {
         removeAllView();
         createView(index);
         setSelectedStatus(index);
@@ -204,6 +204,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void createView(int viewIndex){
         switch (viewIndex){
             case 0:
+                //课程界面
+//                if(mCourseView == null){
+//                    mCourseView = new mCourseView(this);
+//                    mBodyLayout.addView(mCourseView.getView());
+//                }else {
+//                    mCourseView.getView();
+//                }
+//                mCourseView.showView();
                 break;
             case 1:
                 //习题界面
@@ -236,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             boolean isLogin=data.getBooleanExtra("isLogin",false);
             if (isLogin){//登录成功时显示课程界面
                 clearBottomImageState();
-                selectDispalyView(0);
+                selectDisplayView(0);
             }
             if (mMyInfoView != null){
                 mMyInfoView.setLoginParams(isLogin);
