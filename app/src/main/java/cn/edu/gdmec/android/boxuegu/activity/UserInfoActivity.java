@@ -57,31 +57,54 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
      * 获取数据
      */
     private void initData() {
-//        UserBean bean = unll;
-//        bean = DBUtils.getInstance(this).getUserInfo(spUserName);
-//        //首先判断一下数据库是否有数据
-//        if (bean == null){
-//            bean = new UserName();
-//            bean.userName = spUserName;
-//            bean.nickName = "问答精灵";
-//            bean.sex = "男";
-//            bean.signature = "问答精灵";
-//            //保存用户信息到数据库
-//            DBUtils.getInstance(this).savedUserInfo(bean);
-//        }
-//        setValue(bean);
+        UserBean bean = null;
+        bean = DBUtils.getInstance(this).getUserInfo(spUserName);
+        //首先判断一下数据库是否有数据
+        if (bean == null){
+            bean = new UserBean();
+            bean.userName = spUserName;
+            bean.nickName = "问答精灵";
+            bean.sex = "男";
+            bean.signature = "问答精灵";
+            //保存用户信息到数据库
+            DBUtils.getInstance(this).saveUserInfo(bean);
+        }
+        setValue(bean);
     }
-
+    /**
+     * 为界面控件设置值
+     */
+    public void setValue(UserBean bean) {
+        tv_nickName.setText(bean.nickName);
+        tv_user_name.setText(bean.userName);
+        tv_sex.setText(bean.sex);
+        tv_signature.setText(bean.signature);
+    }
+    /**
+     * 为界面控件设置值
+     */
     private void setListener() {
-
+        tv_back.setOnClickListener(this);
+        rl_nickName.setOnClickListener(this);
+        rl_sex.setOnClickListener(this);
+        rl_signature.setOnClickListener(this);
     }
-
-
-
-
-
+    /**
+     * 控件的点击事件
+     */
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_back://返回键的点击事件
+                this.finish();
+                break;
+            case R.id.rl_nickName://昵称的点击事件
+                String name = tv_nickName.getText().toString();//
+                Bundle bdName = new Bundle();
+                bdName.putString("content", name);//
+                bdName.putString("title", "昵称");
+                bdName.putInt("flag", 1);//
+             //   enterActivityForResult(ChangeUserInfpActivity.class,CHANGE_SIGNATURE,bdS)
+        }
     }
 }
