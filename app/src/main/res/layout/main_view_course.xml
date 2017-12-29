@@ -35,6 +35,7 @@
         android:layout_marginRight="8dp"
         android:background="#E4E4E4"/>
     <ListView
+        android:id="@+id/lv_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginBottom="55dp"

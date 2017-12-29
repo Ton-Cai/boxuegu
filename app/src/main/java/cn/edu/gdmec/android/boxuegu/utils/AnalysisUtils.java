@@ -139,4 +139,51 @@ public class AnalysisUtils {
         return userName;
     }
 
+
+    public static List<List<CourseBean>> getCourseInfos(InputStream is) throws Exception{
+        XmlPullParser parser = Xml.newPullParser();
+        parser.setInput(is, "utf-8");
+        List<List<CourseBean>> courseInfos = null;
+        List<CourseBean> courseList = null;
+        CourseBean courseInfo = null;
+        int count = 0;
+        int type = parser.getEventType();
+        while (type != XmlPullParser.END_DOCUMENT){
+            switch (type){
+                case XmlPullParser.START_TAG:
+                    if ("infos".equals(parser.getName())){
+                        courseInfos = new ArrayList<List<CourseBean>>();
+                        courseList = new ArrayList<CourseBean>();
+                    }else if ("course".equals(parser.getName())){
+                        courseInfo = new CourseBean();
+                        String ids = parser.getAttributeValue(0);
+                        courseInfo.id = Integer.parseInt(ids);
+                    }else if ("imgtitle".equals(parser.getName())){
+                        String imgtitle = parser.nextText();
+                        courseInfo.imgTitle = imgtitle;
+                    }else if ("title".equals(parser.getName())){
+                        String title = parser.nextText();
+                        courseInfo.title = title;
+                    }else if ("intro".equals(parser.getName())){
+                        String intor = parser.nextText();
+                        courseInfo.intro = intor;
+                    }
+                    break;
+                case XmlPullParser.END_TAG:
+                    if ("course".equals(parser.getName())){
+                        count ++;
+                        courseList.add(courseInfo);
+                        if (count % 2 == 0){
+                            courseInfos.add(courseList);
+                            courseList = null;
+                            courseList = new ArrayList<CourseBean>();
+                        }
+                        courseInfo = null;
+                    }
+                    break;
+            }
+            type = parser.next();
+        }
+        return courseInfos;
+    }
 }
