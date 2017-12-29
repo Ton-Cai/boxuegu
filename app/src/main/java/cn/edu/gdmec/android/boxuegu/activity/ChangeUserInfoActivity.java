@@ -42,7 +42,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity {
         content = getIntent().getStringExtra("content");
         flag = getIntent().getIntExtra("flag", 0);
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
-        tv_main_title.setText("title");
+        tv_main_title.setText(title);
         rl_title_bar = (RelativeLayout) findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         tv_back = (TextView) findViewById(R.id.tv_back);

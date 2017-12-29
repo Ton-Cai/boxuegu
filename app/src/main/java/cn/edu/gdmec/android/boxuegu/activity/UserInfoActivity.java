@@ -109,7 +109,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 bdName.putString("content", name);//传递界面上的昵称数据
                 bdName.putString("title", "昵称");
                 bdName.putInt("flag", 1);//flag传递1时表示时修改昵称
-                enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_SIGNATURE,bdName);//跳转到个人资料修改界面
+                enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_NICKNAME,bdName);//跳转到个人资料修改界面
                 break;
             case R.id.rl_sex://性别的点击事件
                 String sex = tv_sex.getText().toString();//获取性别控件上的数据
@@ -183,7 +183,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     if (TextUtils.isEmpty(new_info) || new_info == null){
                         return;
                     }
-                    tv_nickName.setText(new_info);
+                    tv_signature.setText(new_info);
                     //更新数据库中的签名字段
                     DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("signature",new_info,spUserName);
                 }
