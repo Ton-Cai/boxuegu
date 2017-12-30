@@ -46,14 +46,14 @@
   "videoId": "1",
   "title": "第4章 数据存储",
   "secondTitle": "文件存储",
-  "videoPath": ""
+  "videoPath": "video11.mp4"
  },
  {
   "chapterId": 4,
   "videoId": "2",
   "title": "第4章 数据存储",
   "secondTitle": "XML序列化与SharedPreferences",
-  "videoPath": ""
+  "videoPath": "video11.mp4"
  },
  {
   "chapterId": 5,
