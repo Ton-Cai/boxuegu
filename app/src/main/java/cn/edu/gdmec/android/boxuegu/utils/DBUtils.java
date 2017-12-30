@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.edu.gdmec.android.boxuegu.bean.UserBean;
 import cn.edu.gdmec.android.boxuegu.bean.VideoBean;
 import cn.edu.gdmec.android.boxuegu.sqlite.SQLiteHelper;
@@ -114,5 +117,24 @@ public class DBUtils {
         }
         cursor.close();
         return hasVideo;
+    }
+
+    public ArrayList<VideoBean> getVideoHistory(String userName) {
+        String sql = " SELECT * FROM " + SQLiteHelper.U_VIDED_PLAY_LIST + " WHERE userName = ? ";
+        Cursor cursor = db.rawQuery(sql, new String[]{userName});
+        ArrayList<VideoBean> vbl = new ArrayList<>();
+        VideoBean bean = null;
+        while (cursor.moveToNext()){
+            bean = new VideoBean();
+            bean.chapterId = cursor.getInt(cursor.getColumnIndex("chapterId"));
+            bean.videoId = cursor.getInt(cursor.getColumnIndex("videoId"));
+            bean.videoPath = cursor.getString(cursor.getColumnIndex("videoPath"));
+            bean.title = cursor.getString(cursor.getColumnIndex("title"));
+            bean.secondTitle = cursor.getString(cursor.getColumnIndex("secondTitle"));
+            vbl.add(bean);
+            bean = null;
+        }
+        cursor.close();
+        return vbl;
     }
 }
