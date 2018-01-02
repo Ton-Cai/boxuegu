@@ -58,11 +58,11 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
 
         db = DBUtils.getInstance(VideoListActivity.this);
         initData();
-        initView();
+        init();
 
     }
 
-    private void initView() {
+    private void init() {
         tv_intro = (TextView) findViewById(R.id.tv_intro);
         tv_video = (TextView) findViewById(R.id.tv_video);
         lv_video_list = (ListView) findViewById(R.id.lv_video_list);
@@ -133,7 +133,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
      */
     private void initData() {
         JSONArray jsonArray;
-        InputStream is;
+        InputStream is = null;
         try {
             is = getResources().getAssets().open("data.json");
             jsonArray = new JSONArray(read(is));

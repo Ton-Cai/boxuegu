@@ -89,19 +89,7 @@ public class DBUtils {
         db.insert(SQLiteHelper.U_VIDED_PLAY_LIST, null, cv);
     }
 
-    /**
-     *删除已经存在的视频记录
-     */
-    private boolean delVideoPlay(int chapterId, int videoId, String userName) {
-        boolean delSuccess = false;
-        int row = db.delete(SQLiteHelper.U_VIDED_PLAY_LIST,
-                "chapterId=? AND videoId=? AND userName=?", new String[]{
-                        chapterId + "", videoId + "", userName});
-        if (row >  0){
-            delSuccess = true;
-        }
-        return delSuccess;
-    }
+
 
     /**
      *判断视频记录是否存在
@@ -119,10 +107,24 @@ public class DBUtils {
         return hasVideo;
     }
 
+    /**
+     *删除已经存在的视频记录
+     */
+    private boolean delVideoPlay(int chapterId, int videoId, String userName) {
+        boolean delSuccess = false;
+        int row = db.delete(SQLiteHelper.U_VIDED_PLAY_LIST,
+                " chapterId=? AND videoId=? AND userName=?", new String[]{
+                        chapterId + "", videoId + "", userName});
+        if (row >  0){
+            delSuccess = true;
+        }
+        return delSuccess;
+    }
+
     public ArrayList<VideoBean> getVideoHistory(String userName) {
-        String sql = " SELECT * FROM " + SQLiteHelper.U_VIDED_PLAY_LIST + " WHERE userName = ? ";
+        String sql = " SELECT * FROM " + SQLiteHelper.U_VIDED_PLAY_LIST + " WHERE userName=?";
         Cursor cursor = db.rawQuery(sql, new String[]{userName});
-        ArrayList<VideoBean> vbl = new ArrayList<>();
+        ArrayList<VideoBean> vbl = new ArrayList<VideoBean>();
         VideoBean bean = null;
         while (cursor.moveToNext()){
             bean = new VideoBean();
