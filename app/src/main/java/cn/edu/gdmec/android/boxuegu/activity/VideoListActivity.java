@@ -164,8 +164,8 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         StringBuilder sb = null;
         String line = null;
 
-        sb = new StringBuilder(); //实例化一个stringbuilder对象
-        //用InputStraeamReader把in这个字节流转换为字符流BufferReader
+        sb = new StringBuilder(); //实例化一个StringBuilder对象
+        //用InputStreamReader把in这个字节流转换为字符流BufferReader
         reader = new BufferedReader(new InputStreamReader(in));
         try {
             while ((line = reader.readLine()) != null){
