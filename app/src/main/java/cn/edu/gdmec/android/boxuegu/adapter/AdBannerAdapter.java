@@ -23,7 +23,7 @@ import cn.edu.gdmec.android.boxuegu.view.CourseView;
 public class AdBannerAdapter extends FragmentStatePagerAdapter implements View.OnTouchListener{
 
     private List<CourseBean> cadl;
-    private Handler mHanlder;
+    private Handler mHandler;
 
     public AdBannerAdapter(FragmentManager fm) {
         super(fm);
@@ -32,8 +32,8 @@ public class AdBannerAdapter extends FragmentStatePagerAdapter implements View.O
 
     public AdBannerAdapter(FragmentManager fm, Handler handler) {
         super(fm);
+        mHandler = handler;
         cadl = new ArrayList<CourseBean>();
-        mHanlder = handler;
     }
 
     /**
@@ -51,10 +51,10 @@ public class AdBannerAdapter extends FragmentStatePagerAdapter implements View.O
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(int index) {
         Bundle args = new Bundle();
         if (cadl.size() > 0){
-            args.putString("ad", cadl.get(position % cadl.size()).icon);
+            args.putString("ad", cadl.get(index % cadl.size()).icon);
         }
         return AdBannerFragment.newInstance(args);
     }
@@ -64,13 +64,16 @@ public class AdBannerAdapter extends FragmentStatePagerAdapter implements View.O
         return Integer.MAX_VALUE;
     }
 
+    /**
+     *返回数据集的真实容量大小
+     */
     public int getSize(){
         return cadl == null ? 0 : cadl.size();
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        mHanlder.removeMessages(CourseView.MSG_AD_SLID);
+        mHandler.removeMessages(CourseView.MSG_AD_SLID);
         return false;
     }
 }

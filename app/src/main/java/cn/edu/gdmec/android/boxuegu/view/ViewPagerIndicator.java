@@ -37,6 +37,7 @@ public class ViewPagerIndicator extends LinearLayout {
         removeAllViews();  //移除界面上存在的view
         int pex = 5;      //内边距
         for(int i = 0; i < mCount; i++){
+            //创建一个ImageView控件来放置小圆点
             ImageView imageView = new ImageView(context);
             if (mIndex == i){
                 //蓝色为选中圆点
@@ -50,6 +51,9 @@ public class ViewPagerIndicator extends LinearLayout {
         }
     }
 
+    /**
+     * 设置小圆点的数目
+     */
     public void setCount(int count){
         this.mCount = count;
     }

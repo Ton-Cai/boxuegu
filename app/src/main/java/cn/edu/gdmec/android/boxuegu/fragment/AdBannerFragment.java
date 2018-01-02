@@ -41,8 +41,8 @@ public class AdBannerFragment extends Fragment {
                 iv.setImageResource(R.drawable.banner_1);
             }else if ("banner_2".equals(ad)){
                 iv.setImageResource(R.drawable.banner_2);
-            }else if ("banner_2".equals(ad)){
-                iv.setImageResource(R.drawable.banner_2);
+            }else if ("banner_3".equals(ad)){
+                iv.setImageResource(R.drawable.banner_3);
             }
         }
     }
