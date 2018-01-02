@@ -15,8 +15,8 @@
         android:background="@drawable/default_img"
         android:gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        
+        android:layout_height="fill_parent"/>
+
         <LinearLayout
             android:layout_alignParentBottom="true"
             android:background="@android:color/transparent"
@@ -31,9 +31,6 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"/>
-
         </LinearLayout>
-
-    </android.support.v4.view.ViewPager>
 
 </RelativeLayout>
