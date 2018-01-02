@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -53,40 +53,39 @@
                 android:textColor="#000000"
                 android:textSize="20sp"/>
         </RelativeLayout>
+    </LinearLayout>
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <ListView
+            android:id="@+id/lv_video_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:divider="#E4E4E4"
+            android:dividerHeight="1dp"
+            android:scrollbars="none"
+            android:visibility="gone"/>
+        <ScrollView
+            android:id="@+id/sv_chapter_intro"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-
-            <ListView
-                android:id="@+id/lv_video_list"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:divider="#E4E4E4"
-                android:dividerHeight="1dp"
-                android:scrollbars="none"
-                android:visibility="gone"/>
-            <ScrollView
-                android:id="@+id/sv_chapter_intro"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
-                <LinearLayout
-                    android:orientation="horizontal"
+                <TextView
+                    android:id="@+id/tv_chapter_intro"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-                    <TextView
-                        android:id="@+id/tv_chapter_intro"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:lineSpacingMultiplier="1.5"
-                        android:padding="10dp"
-                        android:text="安卓简介"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"/>
-                </LinearLayout>
-            </ScrollView>
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+                    android:layout_height="fill_parent"
+                    android:lineSpacingMultiplier="1.5"
+                    android:padding="10dp"
+                    android:text="安卓简介"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</LinearLayout>
