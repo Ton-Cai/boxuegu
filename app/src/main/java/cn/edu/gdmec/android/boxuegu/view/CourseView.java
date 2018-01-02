@@ -46,6 +46,7 @@ public class CourseView implements View.OnTouchListener {
 
     public CourseView(FragmentActivity context){
         mContext = context;
+        //为之后将Layout转化微view时用
         mInflater = LayoutInflater.from(context);
 
     }
@@ -95,19 +96,23 @@ public class CourseView implements View.OnTouchListener {
         }
     }
 
+    /**
+     * 初始化控件
+     */
     private void initView() {
         mCurrentView = mInflater.inflate(R.layout.main_view_course, null);
-        lv_list = mCurrentView.findViewById(R.id.lv_list);
+        lv_list = (ListView) mCurrentView.findViewById(R.id.lv_list);
         adapter = new CourseAdapter(mContext);
         adapter.setData(cbl);
         lv_list.setAdapter(adapter);
 
-        adPager = mCurrentView.findViewById(R.id.vp_advertBanner);
+        adPager = (ViewPager) mCurrentView.findViewById(R.id.vp_advertBanner);
         adPager.setLongClickable(false);
         ada = new AdBannerAdapter(mContext.getSupportFragmentManager(), mHandler);
-        adPager.setAdapter(ada);
-        vpi = mCurrentView.findViewById(R.id.vpi_advert_indicator);
-        vpi.setCount(ada.getCount());
+        adPager.setAdapter(ada);  //给ViewPager设置适配器
+        adPager.setOnTouchListener(ada);
+        vpi = (ViewPagerIndicator) mCurrentView.findViewById(R.id.vpi_advert_indicator); //获取广告条上的小圆点
+        vpi.setCount(ada.getSize()); //设置小圆点的个数
         adBannerLay = mCurrentView.findViewById(R.id.rl_adBanner);
         adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -118,6 +123,7 @@ public class CourseView implements View.OnTouchListener {
             @Override
             public void onPageSelected(int position) {
                 if (ada.getSize() > 0){
+                    //由于index数据在滑动时是累加的，因此用index % ada.getSize()
                     vpi.serCurrentPosition(position % ada.getSize());
                 }
             }
@@ -165,7 +171,10 @@ public class CourseView implements View.OnTouchListener {
         return false;
     }
 
-    private class AdAutoSlidThread extends Thread{
+    /**
+     * 广告自动滑动
+     */
+    class AdAutoSlidThread extends Thread{
         @Override
         public void run() {
             super.run();
@@ -182,7 +191,10 @@ public class CourseView implements View.OnTouchListener {
         }
     }
 
-    private class MHandler extends Handler{
+    /**
+     * 事件捕获
+     */
+    class MHandler extends Handler{
         @Override
         public void dispatchMessage(Message msg) {
             super.dispatchMessage(msg);
