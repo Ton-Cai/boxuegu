@@ -24,6 +24,7 @@ public class ViewPagerIndicator extends LinearLayout {
 
     public ViewPagerIndicator(Context context, AttributeSet attrs){
         super(context, attrs);
+        this.context = context;
         setGravity(Gravity.CENTER);
 
     }
