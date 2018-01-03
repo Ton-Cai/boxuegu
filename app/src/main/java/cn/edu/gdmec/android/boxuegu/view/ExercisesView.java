@@ -47,7 +47,7 @@ public class ExercisesView {
      */
     private void initData(){
         ebl = new ArrayList<ExercisesBean>();
-        for (int i = 0;i < 10;i++){
+        for (int i = 0;i <= 10;i++){
             ExercisesBean bean = new ExercisesBean();
             bean.id=(i + 1);
             switch (i){
