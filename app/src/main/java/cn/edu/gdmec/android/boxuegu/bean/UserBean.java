@@ -5,6 +5,8 @@ package cn.edu.gdmec.android.boxuegu.bean;
  */
 
 public class UserBean {
+    //头像
+    public String head;
     //用户名
     public String userName;
     //昵称
