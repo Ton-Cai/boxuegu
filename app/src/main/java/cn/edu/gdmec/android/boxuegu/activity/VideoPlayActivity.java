@@ -41,13 +41,13 @@ public class VideoPlayActivity extends AppCompatActivity {
         videoView = (VideoView) findViewById(R.id.videoView);
         controller = new MediaController(this);
         videoView.setMediaController(controller);
-        paly();
+        play();
     }
 
     /**
      * 播放视频
      */
-    private void paly() {
+    private void play() {
         if(TextUtils.isEmpty(videoPath)){
             Toast.makeText(this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
             return;
