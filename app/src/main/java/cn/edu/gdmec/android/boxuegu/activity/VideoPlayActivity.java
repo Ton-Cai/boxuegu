@@ -19,6 +19,7 @@ public class VideoPlayActivity extends AppCompatActivity {
     private MediaController controller;
     private String videoPath;  //本地视频地址
     private int position;  //传递视频界面点击的视频位置
+    private String uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,12 @@ public class VideoPlayActivity extends AppCompatActivity {
         //所以需要通过文件名称获取资源id的方法，资源文件名称不能有后缀名。
         //int videoFileResourceId = getResources().getIdentifier(videoPath,"raw",getPackageName());
         //String uri = "android.resource://" + getPackageName() + "/" + videoFileResourceId;
-        String uri = "android.resource://" + getPackageName() + "/" + R.raw.video11;
+        if (position == 0) {
+             uri = "android.resource://" + getPackageName() + "/" + R.raw.video11;
+
+        }else if(position == 1){
+             uri = "android.resource://" + getPackageName() + "/" + R.raw.beyond;
+        }
         videoView.setVideoPath(uri);
         videoView.start();
 

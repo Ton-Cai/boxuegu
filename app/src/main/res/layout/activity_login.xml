@@ -54,7 +54,7 @@
 
     <Button
 
-        android:text="登录"
+        android:text="登 录"
         android:id="@+id/btn_login"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
