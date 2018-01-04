@@ -31,7 +31,7 @@ public class MyInfoView {
     private final LayoutInflater mInflater;
     private View mCurrentView;
     private LinearLayout ll_head;
-    private ImageView iv_head_icon;
+    public ImageView iv_head_icon;
     private RelativeLayout rl_course_history;
     private  RelativeLayout rl_setting;
     private TextView tv_user_name;

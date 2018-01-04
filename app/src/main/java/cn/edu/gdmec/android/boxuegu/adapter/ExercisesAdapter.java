@@ -57,8 +57,8 @@ public class ExercisesAdapter extends BaseAdapter{
      * 根据position得到对应Item的对象
      */
     @Override
-    public long getItemId(int positon) {
-        return positon;
+    public long getItemId(int position) {
+        return position;
     }
 
     /**

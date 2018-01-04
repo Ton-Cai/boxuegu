@@ -93,6 +93,16 @@ public class ChangeUserInfoActivity extends AppCompatActivity {
                             Toast.makeText(ChangeUserInfoActivity.this, "签名不能为空", Toast.LENGTH_SHORT).show();
                         }
                         break;
+                    case 3:
+                        if (!TextUtils.isEmpty(etContent)) {
+                            data.putExtra("portrait", etContent);
+                            setResult(RESULT_OK, data);
+                            Toast.makeText(ChangeUserInfoActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                            ChangeUserInfoActivity.this.finish();
+                        } else {
+                            Toast.makeText(ChangeUserInfoActivity.this, "用户头像不能为空", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
                 }
             }
         });
