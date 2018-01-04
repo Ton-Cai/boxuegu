@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         clearBottomImageState();
-        selectDisplayView(2);
+
         if (mMyInfoView != null) {
             mMyInfoView.setLoginParams(readLoginStatus());
         }
