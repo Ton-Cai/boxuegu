@@ -1,6 +1,8 @@
 package cn.edu.gdmec.android.boxuegu.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import cn.edu.gdmec.android.boxuegu.R;
+import cn.edu.gdmec.android.boxuegu.activity.ExercisesDetailActivity;
 import cn.edu.gdmec.android.boxuegu.bean.VideoBean;
 
 /**
@@ -97,16 +101,28 @@ public class VideoListAdapter extends BaseAdapter{
         }
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if (bean == null) {
-                    return;
+            public void onClick(View v) {
+                //判断是否登录
+                if (readLoginStatus()) {
+                    //播放视频
+                    onSelectListener.onSelect(position, vh.iv_icon);
+                } else {
+                    Toast.makeText(mContext, "您还未登录,请先登录", Toast.LENGTH_LONG).show();
                 }
-                //播放视频
-                onSelectListener.onSelect(position, vh.iv_icon);
+
             }
+
+
         });
         return convertView;
     }
+    //判断是否登录
+    private boolean readLoginStatus(){
+        SharedPreferences sp = mContext.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        boolean isLogin = sp.getBoolean("isLogin", false);
+        return isLogin;
+    }
+
     class ViewHolder {
         public TextView tv_title;
         public ImageView iv_icon;
