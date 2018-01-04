@@ -38,7 +38,7 @@ public class MyInfoView {
     private RelativeLayout rl_course_history;
     private  RelativeLayout rl_setting;
     private TextView tv_user_name;
-    private static String path = "/sdcard/myHead/head.jpg";
+    private static String path = "/sdcard/myHead/";
 
 
     public MyInfoView(Context mContext){
@@ -114,11 +114,11 @@ public class MyInfoView {
             tv_user_name.setText(AnalysisUtils.readLoginUserName(mContext));
             File file = new File(path);
             if (file.exists()){
-                Bitmap bm = BitmapFactory.decodeFile(path);
-                iv_head_icon.setImageBitmap(bm);
-                if (bm != null) {
+                Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");
+                iv_head_icon.setImageBitmap(bt);
+                if (bt != null) {
                     @SuppressWarnings("deprecation")
-                    Drawable drawable = new BitmapDrawable(bm);// 转换成drawable
+                    Drawable drawable = new BitmapDrawable(bt);// 转换成drawable
                     iv_head_icon.setImageDrawable(drawable);
                 } else {
                     /**
