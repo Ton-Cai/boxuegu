@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -114,6 +116,16 @@ public class MyInfoView {
             if (file.exists()){
                 Bitmap bm = BitmapFactory.decodeFile(path);
                 iv_head_icon.setImageBitmap(bm);
+                if (bm != null) {
+                    @SuppressWarnings("deprecation")
+                    Drawable drawable = new BitmapDrawable(bm);// 转换成drawable
+                    iv_head_icon.setImageDrawable(drawable);
+                } else {
+                    /**
+                     * 如果SD里面没有则需要从服务器取头像，取回来的头像再保存在SD中
+                     *
+                     */
+                }
             }
         }else {
             tv_user_name.setText("点击登录");
