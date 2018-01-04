@@ -39,8 +39,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private ImageView iv_head_icon;
     private Bitmap head;// 头像Bitmap
     private static String path = "/sdcard/myHead/";// sd路径
-    private static final int CHANGE_NICKNAME = 1;//修改昵称的自定义常量
-    private static final int CHANGE_SIGNATURE = 2; //修改个性签名的自定义常量
+    private static final int CHANGE_NICKNAME = 4;//修改昵称的自定义常量
+    private static final int CHANGE_SIGNATURE = 5; //修改个性签名的自定义常量
     private String spUserName;
 
 
@@ -68,15 +68,30 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tv_main_title.setText("个人资料");
         rl_title_bar = (RelativeLayout) findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
-        rl_head = (RelativeLayout) findViewById(R.id.rl_head);
+
         rl_nickName = (RelativeLayout) findViewById(R.id.rl_nickName);
         rl_sex = (RelativeLayout) findViewById(R.id.rl_sex);
         rl_signature = (RelativeLayout) findViewById(R.id.rl_signature);
-        iv_head_icon = (ImageView) findViewById(R.id.iv_head_icon);
+
         tv_nickName = (TextView) findViewById(R.id.tv_nickName);
         tv_user_name = (TextView) findViewById(R.id.tv_user_name);
         tv_sex = (TextView) findViewById(R.id.tv_sex);
         tv_signature = (TextView) findViewById(R.id.tv_signature);
+
+        rl_head = (RelativeLayout) findViewById(R.id.rl_head);
+        iv_head_icon = (ImageView) findViewById(R.id.iv_head_icon);
+        Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");// 从SD卡中找头像，转换成Bitmap
+        if (bt != null) {
+            @SuppressWarnings("deprecation")
+            Drawable drawable = new BitmapDrawable(bt);// 转换成drawable
+            iv_head_icon.setImageDrawable(drawable);
+        } else {
+            /**
+             * 如果SD里面没有则需要从服务器取头像，取回来的头像再保存在SD中
+             *
+             */
+        }
+
     }
 
     /**
@@ -108,9 +123,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tv_signature.setText(bean.signature);
     }
     /**
-     * 为界面控件设置值
+     * 设置控件的点击监听事件
      */
     private void setListener() {
+        rl_head.setOnClickListener(this);
         tv_back.setOnClickListener(this);
         iv_head_icon.setOnClickListener(this);
         rl_nickName.setOnClickListener(this);
@@ -135,7 +151,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 bdName.putString("content", name);//传递界面上的昵称数据
                 bdName.putString("title", "昵称");
                 bdName.putInt("flag", 1);//flag传递1时表示时修改昵称
-                enterActivityForResult(ChangeUserInfoActivity.class,4,bdName);//跳转到个人资料修改界面
+                enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_NICKNAME,bdName);//跳转到个人资料修改界面
                 break;
             case R.id.rl_sex://性别的点击事件
                 String sex = tv_sex.getText().toString();//获取性别控件上的数据
@@ -147,7 +163,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 bdSignature.putString("content",signature);//传递界面上的签名数据
                 bdSignature.putString("title","签名");
                 bdSignature.putInt("flag",2);//flag传递2时表示是修改签名
-                enterActivityForResult(ChangeUserInfoActivity.class,5,bdSignature);//跳转到个人资料修改界面
+                enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_SIGNATURE,bdSignature);//跳转到个人资料修改界面
                 break;
             default:
                 break;
@@ -216,8 +232,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                         iv_head_icon.setImageBitmap(head);// 用ImageView显示出来
                     }
                 }
-                break;
-            case 4://个人资料修改界面回传过来的昵称数量
+
+            case CHANGE_NICKNAME://个人资料修改界面回传过来的昵称数量
                 if (data != null){
                     new_info = data.getStringExtra("nickName");
                     if (TextUtils.isEmpty(new_info) || new_info == null){
@@ -228,7 +244,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("nickName",new_info,spUserName);
                 }
                 break;
-            case 5://个人资料修改界面回传过来的签名数据
+            case CHANGE_SIGNATURE://个人资料修改界面回传过来的签名数据
                 if (data != null){
                     new_info = data.getStringExtra("signature");
                     if (TextUtils.isEmpty(new_info) || new_info == null){
