@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,12 +14,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 import cn.edu.gdmec.android.boxuegu.R;
-import cn.edu.gdmec.android.boxuegu.activity.FindPswActivity;
 import cn.edu.gdmec.android.boxuegu.activity.LoginActivity;
-import cn.edu.gdmec.android.boxuegu.activity.ModifyPswActivity;
 import cn.edu.gdmec.android.boxuegu.activity.PlayHistoryActivity;
-import cn.edu.gdmec.android.boxuegu.activity.RegisterActivity;
 import cn.edu.gdmec.android.boxuegu.activity.SettingActivity;
 import cn.edu.gdmec.android.boxuegu.activity.UserInfoActivity;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
@@ -35,6 +36,7 @@ public class MyInfoView {
     private RelativeLayout rl_course_history;
     private  RelativeLayout rl_setting;
     private TextView tv_user_name;
+    private static String path = "/sdcard/myHead/head.jpg";
 
 
     public MyInfoView(Context mContext){
@@ -104,10 +106,15 @@ public class MyInfoView {
             }
         });
     }
-
+//没登录和登录的修改
     public void setLoginParams(boolean isLogin) {
         if (isLogin){
             tv_user_name.setText(AnalysisUtils.readLoginUserName(mContext));
+            File file = new File(path);
+            if (file.exists()){
+                Bitmap bm = BitmapFactory.decodeFile(path);
+                iv_head_icon.setImageBitmap(bm);
+            }
         }else {
             tv_user_name.setText("点击登录");
         }
