@@ -59,6 +59,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_back;
     private TextView tv_main_title;
     private RelativeLayout rl_title_bar;
+    @Override
+    protected void onResume() {
+        clearBottomImageState();
+        selectDisplayView(2);
+        if (mMyInfoView != null) {
+            mMyInfoView.setLoginParams(readLoginStatus());
+        }
+        super.onResume();
+    }
 
 
     @Override
