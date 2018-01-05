@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,18 +37,18 @@ public class MyInfoView {
     private LinearLayout ll_head;
     public ImageView iv_head_icon;
     private RelativeLayout rl_course_history;
-    private  RelativeLayout rl_setting;
+    private RelativeLayout rl_setting;
     private TextView tv_user_name;
-    private static String path = "/sdcard/myHead/";
+    private static String path = "/sdcard/myHead/head.jpg";
 
 
-    public MyInfoView(Context mContext){
+    public MyInfoView(Context mContext) {
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
     }
 
-    public View getView(){
-        if (mCurrentView == null){
+    public View getView() {
+        if (mCurrentView == null) {
             createView();
         }
         return mCurrentView;
@@ -57,7 +58,7 @@ public class MyInfoView {
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         mCurrentView = mInflater.inflate(R.layout.main_view_myinfo, null);
         ll_head = (LinearLayout) mCurrentView.findViewById(R.id.ll_head);
         iv_head_icon = (ImageView) mCurrentView.findViewById(R.id.iv_head_icon);
@@ -68,13 +69,13 @@ public class MyInfoView {
         mCurrentView.setVisibility(View.VISIBLE);
         setLoginParams(readLoginStatus());
 
-        ll_head.setOnClickListener(new View.OnClickListener(){
+        ll_head.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 //判断是否登录
                 if (readLoginStatus()) {
                     //跳转到个人资料界面
-                    Intent intent=new Intent(mContext, UserInfoActivity.class);
+                    Intent intent = new Intent(mContext, UserInfoActivity.class);
                     ((Activity) mContext).startActivityForResult(intent, 1);
                 } else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
@@ -86,11 +87,11 @@ public class MyInfoView {
         rl_course_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (readLoginStatus()){
+                if (readLoginStatus()) {
                     // 跳转到播放记录页面
                     Intent intent = new Intent(mContext, PlayHistoryActivity.class);
                     mContext.startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(mContext, "您还未登录,请先登录", Toast.LENGTH_LONG).show();
                 }
             }
@@ -98,50 +99,40 @@ public class MyInfoView {
         rl_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (readLoginStatus()){
+                if (readLoginStatus()) {
                     // 跳转到设置页面
                     Intent intent = new Intent(mContext, SettingActivity.class);
                     ((Activity) mContext).startActivityForResult(intent, 1);
-                }else {
+                } else {
                     Toast.makeText(mContext, "您还未登录,请先登录", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
-//没登录和登录的修改
+
+    //没登录和登录的修改
     public void setLoginParams(boolean isLogin) {
-        if (isLogin){
+        if (isLogin) {
             tv_user_name.setText(AnalysisUtils.readLoginUserName(mContext));
-            File file = new File(path);
-            if (file.exists()){
-                Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");
-                iv_head_icon.setImageBitmap(bt);
-                if (bt != null) {
-                    @SuppressWarnings("deprecation")
-                    Drawable drawable = new BitmapDrawable(bt);// 转换成drawable
-                    iv_head_icon.setImageDrawable(drawable);
-                } else {
-                    /**
-                     * 如果SD里面没有则需要从服务器取头像，取回来的头像再保存在SD中
-                     *
-                     */
-                }
-            }
-        }else {
+
+
+        } else {
             tv_user_name.setText("点击登录");
         }
     }
 
-    private boolean readLoginStatus(){
+    private boolean readLoginStatus() {
         SharedPreferences sp = mContext.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
         boolean isLogin = sp.getBoolean("isLogin", false);
         return isLogin;
     }
 
     public void showView() {
-        if (mCurrentView == null){
+        if (mCurrentView == null) {
             createView();
         }
         mCurrentView.setVisibility(View.VISIBLE);
     }
+
+
 }

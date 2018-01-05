@@ -16,6 +16,7 @@ import java.util.List;
 
 import cn.edu.gdmec.android.boxuegu.R;
 import cn.edu.gdmec.android.boxuegu.activity.ExercisesDetailActivity;
+import cn.edu.gdmec.android.boxuegu.activity.LoginActivity;
 import cn.edu.gdmec.android.boxuegu.bean.VideoBean;
 
 /**
@@ -108,6 +109,8 @@ public class VideoListAdapter extends BaseAdapter{
                     onSelectListener.onSelect(position, vh.iv_icon);
                 } else {
                     Toast.makeText(mContext, "您还未登录,请先登录", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    mContext.startActivity(intent);
                 }
 
             }
