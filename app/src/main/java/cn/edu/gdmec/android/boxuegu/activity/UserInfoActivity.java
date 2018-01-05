@@ -334,6 +334,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         intent.putExtra("return-data", true);
         startActivityForResult(intent, 3);
     }
+
+
     private void setPicToView(Bitmap mBitmap) {
         String sdStatus = Environment.getExternalStorageState();
         if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用

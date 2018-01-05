@@ -108,29 +108,11 @@ public class MyInfoView {
             }
         });
     }
-//没登录和登录的修改
-    public void setLoginParams(boolean isLogin) {
-        if (isLogin){
-            tv_user_name.setText(AnalysisUtils.readLoginUserName(mContext));
-            File file = new File(path);
-            if (file.exists()){
-                Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");
-                iv_head_icon.setImageBitmap(bt);
-                if (bt != null) {
-                    @SuppressWarnings("deprecation")
-                    Drawable drawable = new BitmapDrawable(bt);// 转换成drawable
-                    iv_head_icon.setImageDrawable(drawable);
-                } else {
-                    /**
-                     * 如果SD里面没有则需要从服务器取头像，取回来的头像再保存在SD中
-                     *
-                     */
-                }
-            }
-        }else {
-            tv_user_name.setText("点击登录");
-        }
-    }
+
+
+
+
+
 
     private boolean readLoginStatus(){
         SharedPreferences sp = mContext.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
