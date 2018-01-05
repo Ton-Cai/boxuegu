@@ -109,6 +109,8 @@ public class ExercisesAdapter extends BaseAdapter{
                     mContext.startActivity(intent);
                 } else {
                     Toast.makeText(mContext, "您还未登录,请先登录", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    mContext.startActivity(intent);
                 }
 
             }

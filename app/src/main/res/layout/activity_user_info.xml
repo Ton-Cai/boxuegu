@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="cn.edu.gdmec.android.boxuegu.activity.UserInfoActivity">
 
-    <include layout="@layout/main_title_bar"></include>
+    <include layout="@layout/main_title_bar"/>
 
     <RelativeLayout
         android:id="@+id/rl_head"
