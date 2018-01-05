@@ -38,7 +38,7 @@ public class MyInfoView {
     private RelativeLayout rl_course_history;
     private  RelativeLayout rl_setting;
     private TextView tv_user_name;
-    private static String path = "/sdcard/myHead/";
+    private static String path = "/sdcard/myHead/head.jpg";
 
 
     public MyInfoView(Context mContext){
